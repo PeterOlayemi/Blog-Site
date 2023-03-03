@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <title>Writer Edit Comment</title>
+        <style>
+            .blog-post-title {
+                margin-bottom: 5px;
+                font-size: 40px;
+            }
+        </style>
+    </head>
+    <body>
+    {% extends "writerbase.html" %}
+{%block content%}
+<div class="content">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-6 contents">
+          <div class="row justify-content-center">
+            <div class="col-md-12">
+              <div class="form-block">
+                  <div class="mb-4">
+                      <h1>Edit Comment</h1>
+                </div>
+                  <span class="mb-0 text-muted">
+                {% if msg %}
+                    {{ msg | safe }}
+                {% else %}
+
+                {% endif %}
+              </span>
+                <form  method="post">
+                    {% csrf_token %}
+                  <div class="form-group first">
+                      {{ form.as_p}}
+                  </div>
+                  <input type="submit"  value="Save Changes" class="btn btn-pill text-white btn-block btn-primary"> <a href="{% url 'writerdeletecomment' _id=comment.id %}" class="btn btn-pill text-white btn-block btn-danger">Remove Comment</a>
+                </form>
+</div></div></div>
+</div></div></div>
+    </div>
+<br><a href="{% url 'writerblogs' %}" class="btn btn-info">Go To Home</a>
+<br><br><br><br><br><br><br><br>
+{%endblock%}

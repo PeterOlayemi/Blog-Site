@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Register</title>
+</head>
+<body>
+  <h1>Reader Registration</h1>
+  <form  method="post">
+    {% csrf_token %}
+    {{ form.as_p}}
+  <input type="submit"  value="Register">
+  </form><br>
+  Already Have An Account? <a href="{% url 'login_view' %}">Log In</a>
+</body>
+</html>

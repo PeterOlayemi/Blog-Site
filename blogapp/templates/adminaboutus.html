@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>About Us</title>
+        <style>
+            .blog-post-title {
+                margin-bottom: 5px;
+                font-size: 40px;
+            }
+        </style>
+    </head>
+    <body>
+    {% extends "adminbase.html" %}
+
+{% block header %}
+
+    <div class='jumbotron'>
+        <div class="container">
+        <h2 class="blog-post-title">About Us</h2>
+        </div>
+    </div>
+
+{% endblock header %}
+
+{% block content %}
+<div style="font-size: 19px;">
+    Esther's foods and supplements corporations was founded in 1808 by Comrade John Mitchell.<br>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error debitis fuga veritatis, iure natus temporibus fugiat laudantium nisi ipsam ea nam, deserunt nulla odit tenetur soluta quas vitae ipsa incidunt.
+    <br> In the spirit of violence, he created this organisation to provide to Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi rerum consectetur, cumque natus perspiciatis officiis architecto, sapiente ad et, praesentium facere dolores eos doloribus? Reiciendis porro nemo similique odio quibusdam!:<br>
+    <ul>
+        <li>Provide information about food and other things we take into our body system; both harmful and otherwise. Since what we eat has a great impact on our health, EFSC decided to set guidelines aimed at procuring an healthy lifestyle.</li>
+        <li>Provide employment opportunities for people living in USA and all around the globe.<br>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet cupiditate explicabo error provident temporibus. Aliquam neque ratione exercitationem excepturi veritatis nam molestiae id fugit, ducimus ipsa, itaque magnam, saepe delectus.<br> John Mitchell is kind of a racist though.</li>
+        <li>Saving as much lives as possible; both knowing and unknowingly</li>
+    </ul><br><br>
+    John Mitchell had a favourite quote which says "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quibusdam obcaecati voluptate quod rerum? Fugit totam labore consequatur sequi veritatis at. Incidunt, maxime ut voluptates delectus veritatis iusto officiis molestiae tempore!" 
+<br><br><br><a href="{% url 'adminblogs' %}" class="btn btn-info">Go To Home</a>
+</div>
+<br><br><br><br><br><br><br><br>
+{%endblock%}

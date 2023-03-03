@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Manage Users</title>
+        <style>
+            .blog-post-title {
+                margin-bottom: 5px;
+                font-size: 40px;
+            }
+        </style>
+    </head>
+    <body>
+    {% extends "adminbase.html" %}
+
+{% block header %}
+
+    <div class='jumbotron'>
+        <div class="container">
+        <h2 class="blog-post-title">Manage Users</h2>
+        </div>
+    </div>
+
+{% endblock header %}
+
+{% block content %}
+<div style="font-size: 19px;">
+
+<table height="150" width="500" align="center">
+<tr>
+<th>Email</th>
+<th>Action</th>
+</tr>
+<tr>
+{% for user in user %}
+<td>{{user.email}}</td>
+<td><a href="{% url 'deleteuser' _id=user.id %}" class="btn btn-danger">Remove</a>
+    <a href="{% url 'adminate' _id=user.id %}" class="btn btn-success">Make Admin</a></td>
+</tr>
+{% endfor %}
+</table>
+
+<br><br><br><br><br><br><br>
+{% endblock %}

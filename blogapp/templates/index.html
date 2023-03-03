@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Home</title>
+</head>
+<body>
+  <h1>Welcome To Peter's Blog</h1>
+  <label>Already Have An Account? Log In!</label><br><br>
+    <a href="{% url 'login_view' %}">Log In</a><br><br>
+  <label>New User? Register!</label><br><br>
+  <a href="{% url 'adminregister' %}">Register as admin || </a>
+  <a href="{% url 'writerregister' %}">Register as writer || </a>
+  <a href="{% url 'readerregister' %}">Register as reader</a>
+  </body>
+</html>

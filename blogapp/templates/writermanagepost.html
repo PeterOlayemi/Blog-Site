@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Manage Your Posts</title>
+        <style>
+            .blog-post-title {
+                margin-bottom: 5px;
+                font-size: 40px;
+            }
+            .blog-post-meta {
+            margin-bottom: 20px;
+            color: #999;
+            }
+        </style>
+    </head>
+    <body>
+    {% extends "writerbase.html" %}
+
+{% block header %}
+
+    <div class='jumbotron'>
+        <div class="container">
+        <h2 class="blog-post-title">Manage Your Posts</h2>
+        </div>
+    </div>
+
+{% endblock header %}
+
+{% block content %}
+<div style="font-size: 19px;">
+{% for data in post %}
+    <h2 class="blog-post-title">{{data.blog_title}}</h2>
+    <p class="blog-post-meta">{{data.date_added}} by <a href="#">{{data.owner}}</a></p>
+    <br><br>
+    <p>{{data.blog|slice:":500" }} <a class="btn btn-pill text-white btn-primary" href = "{% url 'writerblogger' _id=data.id %}">Read More &rarr;</a></p>
+<i><a href="{% url 'writereditpost' _id=data.id %}" class="btn btn-pill text-white btn-primary">  Edit Post </a>  <a href="{% url 'writerdeletepost' _id=data.id %}" class="btn btn-pill text-white btn-danger"> Remove Post </a></i>
+<br><hr><br>
+{% empty %}
+<li>
+    You haven't posted on this blog. Kindly add post.<br><hr><br>
+</li>
+{%endfor %}
+<a href="{% url 'writeraddpost' %}" class="btn btn-pill text-white btn-primary">Add Post</a>   <a href="{% url 'writerblogs' %}" class="btn btn-pill text-white btn-primary"> Go To Home </a>
+</div>
+<br><br><br><br><br>
+{%endblock%}
+</body>

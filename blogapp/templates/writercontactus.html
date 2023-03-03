@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Contact Us</title>
+        <style>
+            .blog-post-title {
+                margin-bottom: 5px;
+                font-size: 40px;
+            }
+        </style>
+    </head>
+    <body>
+    {% extends "writerbase.html" %}
+
+{% block header %}
+
+    <div class='jumbotron'>
+        <div class="container">
+        <h2 class="blog-post-title">Contact Us</h2>
+        </div>
+    </div>
+
+{% endblock header %}
+
+{% block content %}
+<div style="font-size: 19px;">
+    Dear Esteemed User,<br>If you have any questions, reviews or criticisms, you can always reach us through the following channels:<br><br>
+    <ul>
+        <li>LinkedIn: <a href="https://linkedin.com">Here</a></li>
+        <li>Facebook: <a href="https://facebook.com">Here</a></li>
+        <li>Mail: <a href="mailto:olayemipeter2005@gmail.com?subject=Enter Subject&body=Hi Peter, ...">Here</a></li>
+    </ul>
+<br><br><br><a href="{% url 'writerblogs' %}" class="btn btn-info">Go To Home</a>
+</div>
+<br><br><br><br><br><br><br><br>
+{%endblock%}

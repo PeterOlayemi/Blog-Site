@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Manage Your Comments</title>
+        <style>
+            .blog-post-title {
+                margin-bottom: 5px;
+                font-size: 40px;
+            }
+        </style>
+    </head>
+    <body>
+    {% extends "writerbase.html" %}
+
+{% block header %}
+
+    <div class='jumbotron'>
+        <div class="container">
+        <h2 class="blog-post-title">Manage Your Comments</h2>
+        </div>
+    </div>
+
+{% endblock header %}
+
+{% block content %}
+<div style="font-size: 19px;">
+{% for comment in comments %}
+    <ul><li><h3>{{comment.owned}}</h3><br>
+    <div style="font-size:19px">{{comment.comment_text}}
+    <br><br><i>{{ comment.date_added}} <a href="{% url 'writereditcomment' _id=comment.id %}" class="btn btn-pill text-white btn-primary">  Edit Comment </a>  <a href="{% url 'writerdeletecomment' _id=comment.id %}" class="btn btn-pill text-white btn-danger">  Remove Comment </a></i></div></ul>
+    <br><hr>
+
+{% empty %}
+
+<li>
+    You haven't commented on this post yet. You can add comment below<br><hr>
+</li>
+
+{% endfor %}
+        <br><a href="{% url 'writerblog' _id=data.id %}" class="btn btn-info">Go Back  </a>      <a href="{% url 'writerblogs' %}" class="btn btn-info">  Go To Home</a>
+
+<br><br><hr><br>
+<div class="content">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-6 contents">
+          <div class="row justify-content-center">
+            <div class="col-md-12">
+              <div class="form-block">
+                  <div style="text-align: center" class="mb-4">
+                      <h1>Add Comment</h1>
+                </div>
+                  <span class="mb-0 text-muted">
+                {% if msg %}
+                    {{ msg | safe }}
+                {% else %}
+
+                {% endif %}
+              </span>
+                <form  method="post">
+                    {% csrf_token %}
+                  <div class="form-group first">
+                      {{ form.as_p}}
+                  </div>
+                  <input type="submit"  value="Comment" class="btn btn-pill text-white btn-primary">
+                </form>
+</div></div></div>
+</div></div></div>
+    </div>
+</div>
+<br><br><br><br><br>
+{%endblock%}
+</body>

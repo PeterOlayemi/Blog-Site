@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Detailed Post-View</title>
+
+        <style>
+            .blog-post-title {
+                margin-bottom: 5px;
+                font-size: 40px;
+            }
+            .blog-post-meta {
+                margin-bottom: 20px;
+                color: #999;
+            }
+        </style>
+
+    </head>
+    <body>
+    {% extends "writerbase.html" %}
+
+{% block header %}
+
+    <div class='jumbotron'>
+        <div class="container">
+        <h2 class="blog-post-title">{{data.blog_title}}</h2>
+        <p class="blog-post-meta">{{data.date_added}} by <a href="#">{{data.owner}}</a></p><br><br><br>
+        </div>
+    </div>
+
+{% endblock header %}
+
+{% block content %}
+<div style="font-size: 19px;">
+    <p>{{data.blog}}</p>
+<br><br>
+    <a href="{% url 'writereditpost' _id=data.id %}" class="btn btn-pill text-white btn-primary">Edit Post</a> <a href="{% url 'writerdeletepost' _id=data.id %}" class="btn btn-pill text-white btn-danger">Remove Post</a><br>
+<br>
+    <a href = "{% url 'writermanagepost' %}" class="btn btn-info">Go Back</a>
+<br><hr><br>
+    <h2>Comments</h2><br>
+    {%for comment in comments%}
+        <ul><li><h3>{{comment.owned}}</h3><br><p style="font-size:medium">{{comment.comment_text}}<br><br><i>{{ comment.date_added}}</i></p></ul><hr>
+    {% empty %}
+    <li>
+        You haven't commented on this post yet. You can add comment below<br><hr>
+    </li>
+    {%endfor %}
+    <a href = "{% url 'writermanagecomment' _id=data.id %}" class="btn btn-info">Manage Your Comments</a><br><hr><br>
+
+  <div class="content">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-6 contents">
+          <div class="row justify-content-center">
+            <div class="col-md-12">
+              <div class="form-block">
+                  <div class="mb-4">
+                      <h1>Add Comment</h1>
+                </div>
+                  <span class="mb-0 text-muted">
+                {% if msg %}
+                    {{ msg | safe }}
+                {% else %}
+
+                {% endif %}
+              </span>
+                <form  method="post">
+                    {% csrf_token %}
+                  <div class="form-group first">
+                      {{ form.as_p}}
+                  </div>
+                  <input type="submit"  value="Comment" class="btn btn-pill text-white btn-primary">
+                </form>
+</div></div></div></div></div></div></div>
+
+<br><br><br><br><br></div>
+{% endblock content %}
+    
+</body>

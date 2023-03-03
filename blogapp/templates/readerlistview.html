@@ -1,0 +1,125 @@
+{% extends "readerbase.html" %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+
+    <title>Reader Home</title>
+
+    <style type="text/css">
+        body {
+            font-family: Georgia, "Times New Roman", Times, serif; color: #555;
+        }
+        .blog-header {
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+        .sidebar-module {
+            padding: 15px;
+            margin: 0 -15px 15px;
+        }
+        .sidebar-module-inset {
+            padding: 15px;
+            background-color: #f5f5f5;
+            border-radius: 4px;
+        }
+        .sidebar-module-inset p:last-child,
+        .sidebar-module-inset ul:last-child,
+        .sidebar-module-inset ol:last-child {
+                            margin-bottom: 0;
+                        }
+        .blog-post {
+            margin-bottom: 60px;
+        }
+        .blog-post-title {
+            margin-bottom: 5px;
+            font-size: 40px;
+        }
+        .blog-post-meta {
+            margin-bottom: 20px;
+            color: #999;
+        }
+        .blog-main {
+            font-size: 18px;
+            line-height: 1.5;
+        }
+    </style>
+
+  </head>
+
+  <body>
+
+{% block header %}
+
+    <div class='jumbotron'>
+        <div class="container">
+        <h1 style="color:crimson">Peter's Blog</h1> <tt style="font-size: 20px;">(Reader's Interface)</tt><h3><i>If knowledge is power, then reading is the source of that power</i></h3><br><br><br>
+    </div>
+  <div class="content">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-6 contents">
+          <div class="row justify-content-center">
+            <div class="col-md-12">
+              <div class="form-block">
+                  <div style="text-align: center" class="mb-4">
+                      <h2>Search This Blog</h2>
+                </div><br>
+                  <span class="mb-0 text-muted">
+                {% if msg %}
+                    {{ msg | safe }}
+                {% else %}
+
+                {% endif %}
+              </span>
+                <form  method="post">
+                    {% csrf_token %}
+                  <div class="form-group first">
+                      {{ form.as_p}}
+                  </div>
+                  <input type="submit"  value="Search" class="btn btn-pill text-white btn-block btn-primary">
+                </form>
+        </div>
+    </div>
+</div></div></div></div></div></div>
+{% endblock header %}
+
+    {% block content %}
+    {% for data in dataset %}
+        <div class="row">
+
+            <div class="col-lg-10 blog-main">
+
+            <div style="font-size:20px" class="blog-post">
+            <h2 class="blog-post-title">{{data.blog_title}}</h2>
+            <p class="blog-post-meta">{{data.date_added}} by <a href="#">{{data.owner}}</a></p>
+    <br>
+            <p>{{data.blog|slice:":500" }} <a class="btn btn-primary" href = "{% url 'readerblog' _id=data.id %}">Read More &rarr;</a></p><br><hr><br>
+            </div>
+            </div>
+        </div><br><br>
+
+    {%endfor %}
+{% if dataset.has_other_pages %}
+  <nav aria-label="Page navigation conatiner"></nav>
+  <ul class="pagination justify-content-center">
+    {% if dataset.has_previous %}
+    <li><a href="?page={{ dataset.previous_page_number }}" class="page-link">&laquo; Previous Page  </a>  </li>
+    {% endif %}
+    {% if dataset.has_next %}
+    <li><a href="?page={{ dataset.next_page_number }}" class="page-link"> Next Page &raquo;  </a>  </li>
+   {% endif %}
+  </ul>
+  </nav>
+</div>
+{% endif %}
+        <br><br><br><br><br><br><br>
+    {% endblock content %}
+    
+  </body>
+
+</html>
